@@ -1,0 +1,16 @@
+[project]
+name = "student-performance-api"
+version = "1.0.0"
+description = "FastAPI application for predicting student final exam scores."
+requires-python = ">=3.10"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "joblib",
+    "pydantic",
+    "python-multipart"
+]
