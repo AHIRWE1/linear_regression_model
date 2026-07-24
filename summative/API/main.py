@@ -94,7 +94,19 @@ class PredictionResponse(BaseModel):
     model: str
 
 
-@app.get("/")
+class RetrainResponse(BaseModel):
+    success: bool
+    message: str
+    selected_model: str
+    r2_scores: dict[str, float]
+    rows_trained_on: int
+
+
+class HomeResponse(BaseModel):
+    message: str
+
+
+@app.get("/", response_model=HomeResponse)
 def home():
     return {
         "message": "Student Performance Prediction API is running."
@@ -115,7 +127,7 @@ def predict(student: StudentData):
     }
 
 
-@app.post("/retrain")
+@app.post("/retrain", response_model=RetrainResponse)
 async def retrain(
     file: UploadFile = File(
         ...,
